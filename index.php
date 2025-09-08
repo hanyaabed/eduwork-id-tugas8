@@ -17,38 +17,41 @@ $kategori_result = mysqli_query($conn, "SELECT DISTINCT kategori FROM produk");
 ?>
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <title>E-Commerce</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body class="bg-light">
     <div class="container py-5">
         <h1 class="text-center mb-4">Daftar Produk</h1>
 
-         <!-- Filter kategori -->
+        <!-- Filter kategori -->
         <form method="GET" class="mb-4 text-center">
             <label for="kategori" class="form-label fw-bold">Filter Kategori:</label>
             <select name="kategori" id="kategori" class="form-select w-25 d-inline" onchange="this.form.submit()">
                 <option value="">Semua Kategori</option>
                 <?php while ($row = mysqli_fetch_assoc($kategori_result)) { ?>
-                    <option value="<?php echo $row['kategori']; ?>" 
+                    <option value="<?php echo $row['kategori']; ?>"
                         <?php if ($kategori_filter == $row['kategori']) echo "selected"; ?>>
                         <?php echo $row['kategori']; ?>
                     </option>
                 <?php } ?>
             </select>
         </form>
-        
+
         <!-- Produk -->
         <div class="row">
             <?php
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
-                    ?>
+            ?>
                     <div class="col-md-4 mb-4">
                         <div class="card h-100 shadow-sm">
+                            <img src="<?php echo $row['gambar']; ?>" class="card-img-top" alt="<?php echo $row['nama']; ?>">
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $row['nama']; ?></h5>
                                 <h6 class="card-subtitle mb-2 text-muted">Rp <?php echo number_format($row['harga'], 0, ',', '.'); ?></h6>
@@ -57,7 +60,7 @@ $kategori_result = mysqli_query($conn, "SELECT DISTINCT kategori FROM produk");
                             </div>
                         </div>
                     </div>
-                    <?php
+            <?php
                 }
             } else {
                 echo "<p class='text-center'>Belum ada produk.</p>";
@@ -70,4 +73,5 @@ $kategori_result = mysqli_query($conn, "SELECT DISTINCT kategori FROM produk");
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
