@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tambah Produk Baru</title>
+</head>
+<body>
+    <h2>Form Tambah Produk</h2>
+    <form action="proses_produk.php" method="post">
+        <label>Nama Produk:</label><br>
+        <input type="text" name="nama"><br><br>
+
+        <label>Harga Produk:</label><br>
+        <input type="number" name="harga"><br><br>
+
+        <label>Deskripsi Produk:</label><br>
+        <textarea name="deskripsi" rows="4" cols="30"></textarea><br><br>
+
+        <label>Deskripsi Produk:</label><br>
+        <select name="kategori">
+            <option value="">--Pilih Kategori--</option>
+            <option value="Pakaian">Pakaian</option>
+            <option value="Aksesoris">Aksesoris</option>
+        </select><br><br>
+
+        <input type="submit" value="Simpan Produk">
+        <a href="index.php"><button type="button">Batal</button></a>
+    </form>
+</body>
+</html>
